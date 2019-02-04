@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LockdownBusinessLogic
 {
@@ -41,12 +38,12 @@ namespace LockdownBusinessLogic
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public PasswordStrength GetPasswordStrength(string password)
+        public PasswordStrength GetPasswordStrength(string password, int minLength = 5)
         {
             int score = 0;
             if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(password.Trim())) return PasswordStrength.Blank;
-            if (!HasMinimumLength(password, 5)) return PasswordStrength.VeryWeak;
-            if (HasMinimumLength(password, 5)) score++;
+            if (!HasMinimumLength(password, minLength)) return PasswordStrength.VeryWeak;
+            if (HasMinimumLength(password, minLength)) score++;
             if (HasUpperCaseLetter(password) && HasLowerCaseLetter(password)) score++;
             if (HasDigit(password)) score++;
             if (HasSpecialCharacter(password)) score++;
