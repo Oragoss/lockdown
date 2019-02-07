@@ -1,21 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Web.Helpers;
 
 namespace LockdownBusinessLogic.Managers
 {
     public class PasswordManager : IPasswordManager
     {
         IPasswordManager passwordManager;
-        IPasswordChecker passwordChecker;
 
-        public PasswordManager(IPasswordManager passwordManager, IPasswordChecker passwordChecker)
+        public PasswordManager(IPasswordManager passwordManager)
         {
             this.passwordManager = passwordManager;
-            this.passwordChecker = passwordChecker;
         }
 
         public string GenerateRandomPassword(PasswordOptions opts = null)
@@ -61,17 +60,46 @@ namespace LockdownBusinessLogic.Managers
                 characterList.Insert(random.Next(0, characterList.Count), randomCharacterString[random.Next(0, randomCharacterString.Length)]);
             }
 
-            return new string(characterList.ToArray());
+            return HashPassword(new string(characterList.ToArray()));
         }
 
-        public bool IsPasswordValid()
+        public string HashPassword(string password)
         {
-            throw new NotImplementedException();
+            var encryptedPassword = Crypto.Hash(password, "sha256");
+            var salt = Crypto.GenerateSalt();   //default bytes is 16, good enough
+
+            var hashPassword = Crypto.HashPassword(encryptedPassword + salt);
+
+            return hashPassword;
         }
 
-        public void HashPassword()
+        public bool VerifyPassword(string password)
         {
-            throw new NotImplementedException();
+            //TODO: Get the hashed password from the db
+            var hashedPassword = "";
+
+            if (Crypto.VerifyHashedPassword(hashedPassword, password))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Not recommended
+        public void HashPasswordYourself(string password)
+        {
+            byte[] salt = new byte[16];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            password: password,
+            salt: salt,
+            prf: KeyDerivationPrf.HMACSHA256,
+            iterationCount: 10000,
+            numBytesRequested: 256 / 8));
         }
     }
 }

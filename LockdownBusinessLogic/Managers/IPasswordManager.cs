@@ -5,7 +5,7 @@ namespace LockdownBusinessLogic.Managers
     public interface IPasswordManager
     {
         string GenerateRandomPassword(PasswordOptions passwordOptions = null);
-
-        void HashPassword();
+        string HashPassword(string password);
+        bool VerifyPassword(string password);
     }
 }
