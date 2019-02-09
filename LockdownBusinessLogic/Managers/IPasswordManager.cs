@@ -1,6 +1,6 @@
 ﻿using LockdownData.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace LockdownBusinessLogic.Managers
 {
@@ -9,6 +9,6 @@ namespace LockdownBusinessLogic.Managers
         string GenerateRandomPassword(PasswordOptions passwordOptions = null);
         string HashPassword(string password);
         bool VerifyPassword(string password);
-        IEnumerable<GeneratedPassword> GetPasswordList(int userId);
+        IQueryable<GeneratedPassword> GetPasswordList(string username);
     }
 }

@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
   };
 
   componentDidMount() {
-      fetch('GetList/') //TODO: Pass an id, maybe change the get to a post?
+      fetch('GetList/') //TODO: Pass a username, maybe change the get to a post?
       .then(resp => resp.json)
       .then((data) => {
         this.setState({

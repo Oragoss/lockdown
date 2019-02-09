@@ -86,13 +86,14 @@ namespace LockdownBusinessLogic.Managers
             return false;
         }
 
-        public IEnumerable<GeneratedPassword> GetPasswordList(int userId)
+        public IQueryable<GeneratedPassword> GetPasswordList(string username)
         {
             IQueryable<GeneratedPassword> passwords;
 
             using (var db = new LockdownContext())
             {
-                passwords = db.Passwords.Where(x => x.UserId == userId);
+                var user = db.Users.FirstOrDefault(x => x.Username == username);
+                passwords = db.Passwords.Where(x => x.UserId == user.Id);
             }
 
             return passwords;

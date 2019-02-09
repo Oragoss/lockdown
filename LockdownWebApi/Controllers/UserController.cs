@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LockdownBusinessLogic.Managers;
+﻿using LockdownBusinessLogic.Managers;
 using LockdownBusinessLogic.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LockdownWebApi.Controllers
@@ -21,14 +16,16 @@ namespace LockdownWebApi.Controllers
             this.userManager = userManager;
         }
 
-        [Route("GetList/{id}")]
-        public ActionResult GetList(int id)
+        [Route("GetList/{username}")]
+        [HttpGet]
+        public ActionResult GetList(string username)
         {
-            var list = passwordManager.GetPasswordList(id);
+            var list = passwordManager.GetPasswordList(username);
             return Ok(list);
         }
 
         [Route("PostNewUser")]
+        [HttpPost]
         public ActionResult PostNewUser(User user)
         {
             userManager.MakeNewAccount(user.Username, user.Password);
