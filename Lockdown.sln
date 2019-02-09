@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockdownWebApi", "LockdownWebApi\LockdownWebApi.csproj", "{4FDA50B3-E1B8-49AE-AFB5-C661DAADF1F8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockdownBusinessLogic", "LockdownBusinessLogic\LockdownBusinessLogic.csproj", "{C8FED8CA-5CD0-4DD3-B1B3-9382EAA88DF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockdownData", "LockdownData\LockdownData.csproj", "{17B34E9F-826F-4264-ACEC-FD5B358C34E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockdownData", "LockdownData\LockdownData.csproj", "{17B34E9F-826F-4264-ACEC-FD5B358C34E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockdownWebApi", "LockdownWebApi\LockdownWebApi.csproj", "{563E9991-65A4-42C6-B6B1-5DA18E440F0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4FDA50B3-E1B8-49AE-AFB5-C661DAADF1F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FDA50B3-E1B8-49AE-AFB5-C661DAADF1F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FDA50B3-E1B8-49AE-AFB5-C661DAADF1F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FDA50B3-E1B8-49AE-AFB5-C661DAADF1F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8FED8CA-5CD0-4DD3-B1B3-9382EAA88DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8FED8CA-5CD0-4DD3-B1B3-9382EAA88DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8FED8CA-5CD0-4DD3-B1B3-9382EAA88DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{17B34E9F-826F-4264-ACEC-FD5B358C34E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B34E9F-826F-4264-ACEC-FD5B358C34E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17B34E9F-826F-4264-ACEC-FD5B358C34E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563E9991-65A4-42C6-B6B1-5DA18E440F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563E9991-65A4-42C6-B6B1-5DA18E440F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563E9991-65A4-42C6-B6B1-5DA18E440F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563E9991-65A4-42C6-B6B1-5DA18E440F0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

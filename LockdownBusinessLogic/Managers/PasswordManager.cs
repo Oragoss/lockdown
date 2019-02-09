@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using LockdownData;
+using LockdownData.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -85,21 +86,16 @@ namespace LockdownBusinessLogic.Managers
             return false;
         }
 
-        //Not recommended
-        public void HashPasswordYourself(string password)
+        public IEnumerable<GeneratedPassword> GetPasswordList(int userId)
         {
-            byte[] salt = new byte[16];
-            using (var rng = RandomNumberGenerator.Create())
+            IQueryable<GeneratedPassword> passwords;
+
+            using (var db = new LockdownContext())
             {
-                rng.GetBytes(salt);
+                passwords = db.Passwords.Where(x => x.UserId == userId);
             }
 
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-            password: password,
-            salt: salt,
-            prf: KeyDerivationPrf.HMACSHA256,
-            iterationCount: 10000,
-            numBytesRequested: 256 / 8));
+            return passwords;
         }
     }
 }
