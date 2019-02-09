@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 *.db
+LockdownData/Lockdown.db
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
